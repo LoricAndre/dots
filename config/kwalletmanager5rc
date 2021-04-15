@@ -1,0 +1,12 @@
+[MainWindow]
+DisplayPort-1 DisplayPort-2 Height 1920x1080=1056
+DisplayPort-1 DisplayPort-2 Width 1920x1080=1876
+DisplayPort-1 DisplayPort-2 Window-Maximized 1920x1080=true
+DisplayPort-1 DisplayPort-2 XPosition 1920x1080=1920
+DisplayPort-1 DisplayPort-2 YPosition 1920x1080=24
+State=AAAA/wAAAAD9AAAAAAAAB1QAAAQCAAAABAAAAAQAAAAIAAAACPwAAAAA
+ToolBarsMovable=Disabled
+
+[WalletEditor]
+AlwaysShowContents=false
+SplitterSize=860,989

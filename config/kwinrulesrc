@@ -1,0 +1,16 @@
+[$Version]
+update_info=kwinrules.upd:replace-placement-string-to-enum
+
+[1]
+Description=Dropdown
+above=true
+aboverule=2
+noborder=true
+noborderrule=2
+position=0,0
+positionrule=2
+wmclass=dropdown
+wmclassmatch=1
+
+[General]
+count=1

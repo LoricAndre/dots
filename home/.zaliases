@@ -1,0 +1,71 @@
+alias c=clear
+alias ls="ls --color"
+alias ll="ls --color -al"
+
+mcd() {
+  mkdir -p $@ && cd $@
+}
+compdef mcd=cd
+
+nalias() {
+  echo "alias $1='$2'" >> $HOME/.zaliases
+}
+alias h='history'
+
+alias ..='cd ..'
+alias ...='cd ...'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias top='gtop'
+alias s='status'
+alias :qa='exit'
+alias :q='clear'
+alias reboot='sudo reboot'
+alias shutdown='sudo shutdown'
+alias mkdir="mkdir -p"
+
+alias py='python3'
+alias cat='bat'
+
+alias mkdir='mkdir -p'
+alias ssh="kitty +kitten ssh"
+alias icat="kitty +kitten icat"
+n() {
+  if [ -z "$1" ]; then
+    arg="$PWD";
+  else
+    arg="$1"
+  fi
+  if [ -d "$arg" ]; then
+    p="$HOME/.config/nvim/session/$(echo `cd $arg && pwd` | sed -e 's#/##g').vim"
+    nvim -S "$p" -c "silent! Obsess $p" ${@:1}
+  else
+    nvim $@
+  fi
+}
+
+open() {
+  for a in "$@"; do
+    xdg-open $a >/dev/null 2>&1
+  done
+}
+alias spotify='LD_PRELOAD=/usr/lib/spotify-adblock.so spotify --disable-gpu --disable-software-rasterizer'
+nohd() {
+  nohup $@ >/dev/null 2>&1 &
+}
+alias bashupload='curl https://bashupload.com -T'
+rlmv() {
+  dir=$(echo "$1" | rev | cut -d'/' -f2- | rev)
+  mv "$1" "$dir/$2"
+}
+rlcp() {
+  dir=$(echo "$1" | rev | cut -d'/' -f2- | rev)
+  cp "$1" "$dir/$2"
+}
+packadd() {
+  paru $@
+  [ -z "$2" ] || echo "AUR:$2" >> $HOME/dots/packageslist
+}
+alias pa=packadd
+compdef packadd=paru

@@ -1,0 +1,11 @@
+[dots/bin/src/lua-language-server]
+checkout = git clone 'git@github.com:sumneko/lua-language-server.git' 'lua-language-server'
+
+[projects/autossh]
+checkout = git clone 'git@gitlab.data-ensta.fr:andre.2022/autossh.git' 'autossh'
+
+[projects/superb-bootstrap]
+checkout = git clone 'git@github.com:LoricAndre/superb-bootstrap.git' 'superb-bootstrap'
+
+[projects/bigfoot_reloaded]
+checkout = git clone 'git@gitlab.data-ensta.fr:data/bigfoot_reloaded.git' 'bigfoot_reloaded'

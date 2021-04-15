@@ -1,0 +1,37 @@
+[$Version]
+update_info=ksmserver_update_loginMode_value.upd:ksmserver_update_loginMode_value_default_enum
+
+[General]
+loginMode=emptySession
+
+[LegacySession: saved at previous logout]
+count=0
+
+[Session: saved at previous logout]
+clientId1=101b210714a13d000161551853900000012640076
+clientId2=101b210714a13d000161563247100000012890008
+clientId3=101b210714a13d000161558842500000012880009
+clientId4=101b210714a13d000161563250100000012890012
+clientId5=101b210714a13d000161566966900000012890047
+count=5
+discardCommand5[$e]=rm,$HOME/.config/session/dolphin_101b210714a13d000161566966900000012890047_1615692446_775259
+program1=/usr/bin/megasync
+program2=pulseaudio
+program3=/usr/bin/birdtray
+program4=thunderbird
+program5=/usr/bin/dolphin
+restartCommand1=/usr/bin/megasync,-session,101b210714a13d000161551853900000012640076_1615692446_775310
+restartCommand2=
+restartCommand3=/usr/bin/birdtray,-session,101b210714a13d000161558842500000012880009_1615692446_775218
+restartCommand4=/usr/lib/thunderbird/thunderbird,--sm-client-id,101b210714a13d000161563250100000012890012
+restartCommand5=/usr/bin/dolphin,-session,101b210714a13d000161566966900000012890047_1615692446_775259
+restartStyleHint1=0
+restartStyleHint2=0
+restartStyleHint3=0
+restartStyleHint4=0
+restartStyleHint5=0
+userId1=loric
+userId2=loric
+userId3=loric
+userId4=loric
+userId5=loric
