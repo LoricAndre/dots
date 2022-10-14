@@ -1,4 +1,3 @@
-vim.g.coq_settings = {
-  auto_start = true
-}
 vim.g.mapleader = ' '
+
+vim.cmd [[ colorscheme tokyodark ]]

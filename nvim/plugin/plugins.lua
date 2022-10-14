@@ -3,6 +3,7 @@ local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
   fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
 end
+
 local plugins_spec = {
   { 'wbthomason/packer.nvim' },
   { 'nvim-telescope/telescope.nvim',
@@ -33,23 +34,14 @@ local plugins_spec = {
   { 'LudoPinelli/comment-box.nvim',
     config = function() require 'plugins.comment-box' end
   },
-  { 'hrsh7th/nvim-cmp',
-    config = function() require 'plugins.cmp' end,
+  { 'ms-jpq/coq_nvim',
+    branch = 'coq',
     requires = {
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-cmdline',
-      'L3MON4D3/LuaSnip',
-      'saadparwaiz1/cmp_luasnip',
-      'hrsh7th/cmp-calc',
-      'hrsh7th/cmp-nvim-lsp-document-symbol',
-      'hrsh7th/cmp-nvim-lsp-signature-help',
-      'petertriho/cmp-git',
-      'Saecki/crates.nvim',
-      'hrsh7th/cmp-nvim-lua',
-      'ray-x/cmp-treesitter',
+      { 'ms-jpq/coq.artifacts', branch = 'artifacts' },
+      { 'ms-jpq/coq.thirdparty', branch = '3p' },
     },
+    run = ':COQdeps',
+    config = function() require 'plugins.coq' end
   },
   { 'feline-nvim/feline.nvim',
     config = function() require 'plugins.feline' end,
