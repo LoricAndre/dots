@@ -14,7 +14,8 @@ local plugins_spec = {
       'cljoly/telescope-repo.nvim',
       'gbrlsnchs/telescope-lsp-handlers.nvim',
       'rcarriga/nvim-notify',
-      'nvim-telescope/telescope-file-browser.nvim'
+      'nvim-telescope/telescope-file-browser.nvim',
+      'nvim-telescope/telescope-ui-select.nvim'
     },
     config = function() require 'plugins.telescope' end,
     rocks = {
@@ -25,14 +26,8 @@ local plugins_spec = {
   { 'akinsho/toggleterm.nvim',
     config = function() require 'plugins.toggleterm' end
   },
-  { 'goolord/alpha-nvim',
-    config = function() require 'plugins.alpha' end
-  },
   { 'numToStr/Comment.nvim',
     config = function() require 'plugins.comment' end
-  },
-  { 'LudoPinelli/comment-box.nvim',
-    config = function() require 'plugins.comment-box' end
   },
   { 'ms-jpq/coq_nvim',
     branch = 'coq',
@@ -57,34 +52,29 @@ local plugins_spec = {
     config = function() require 'plugins.treesitter' end,
     run = ':TSUpdate'
   },
-  { 'neovim/nvim-lspconfig',
-    config = function() require 'plugins.lsp' end,
-    requires = {
-      'jubnzv/virtual-types.nvim',
-      'kosayoda/nvim-lightbulb',
-      'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
-      'williamboman/nvim-lsp-installer'
-    },
-  },
   { 'folke/persistence.nvim',
     config = function() require 'plugins.persistence' end
-  },
-  { 'sidebar-nvim/sidebar.nvim',
-    config = function() require 'plugins.sidebar' end
   },
   { 'michaelb/sniprun',
     config = function() require 'plugins.sniprun' end,
     run = 'bash ./install.sh'
   },
-  { 'renerocksai/telekasten.nvim',
+  { 'williamboman/mason.nvim',
+    config = function() require'plugins.mason' end,
     requires = {
-      'renerocksai/calendar-vim'
-    },
-    config = function() require 'plugins.telekasten' end
+    'neovim/nvim-lspconfig',
+    'jubnzv/virtual-types.nvim',
+    'kosayoda/nvim-lightbulb',
+    'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
+    'williamboman/mason-lspconfig.nvim',
+    'jose-elias-alvarez/null-ls.nvim',
+    'ThePrimeagen/refactoring.nvim',
+    'rcarriga/nvim-dap-ui',
+    'mfussenegger/nvim-dap'
+    }
   },
   { 'lewis6991/impatient.nvim' },
   { 'ggandor/lightspeed.nvim' },
-  { 'neomake/neomake' },
   { 'shaunsingh/nord.nvim' },
   { 'tiagovla/tokyodark.nvim' },
   { 'folke/tokyonight.nvim' },

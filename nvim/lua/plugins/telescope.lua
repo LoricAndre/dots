@@ -12,3 +12,4 @@ nmap { '<F1>', builtin.help_tags }
 telescope.load_extension('lsp_handlers')
 telescope.load_extension('media_files')
 telescope.load_extension('file_browser')
+require('telescope').load_extension('ui-select')
