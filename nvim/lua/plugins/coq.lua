@@ -3,7 +3,7 @@ local imap = require'utils'.imap
 
 vim.g.coq_settings = {
   ['keymap.recommended'] = false,
-  auto_start = true
+  auto_start = 'shut-up'
 }
 
 imap { '<Esc>', 'pumvisible() ? "\\<C-e><Esc>" : "\\<Esc>"', expr = true }
