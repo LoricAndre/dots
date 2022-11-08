@@ -46,9 +46,6 @@ local plugins_spec = {
         config = function() require 'plugins.treesitter' end,
         run = ':TSUpdate'
     }, {
-        'folke/persistence.nvim',
-        config = function() require 'plugins.persistence' end
-    }, {
         'michaelb/sniprun',
         config = function() require 'plugins.sniprun' end,
         run = 'bash ./install.sh'
