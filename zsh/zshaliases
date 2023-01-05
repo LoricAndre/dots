@@ -10,7 +10,7 @@ mcd() {
 }
 
 nalias() {
-  echo "alias $1='$2'" >> $HOME/dotfiles/zsh/aliases
+  echo "alias $1='$2'" >> $HOME/.zshaliases
 }
 alias h='history'
 
@@ -99,3 +99,10 @@ alias nvim='TERM=xterm nvim'
 alias gn='n +"Telescope repo list"'
 alias :e='n'
 alias gf='g a && g c && g p'
+xdg-open() {
+  [ -z $(uname -r | grep WSL) ] && xdg-open $@ || powershell.exe -c start $@
+}
+
+vnmap() {
+  nmap -Pn -sV --script vuln $@ | grep -C1 VULNERABLE | grep IDs | sed -n 's/^.*IDs:.*:\(.*\)$/\1/p'
+}

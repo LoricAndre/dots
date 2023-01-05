@@ -75,7 +75,6 @@ local config = {
       vim.fn.sign_define('DapBreakpoint', { text = '🛑', texthl = '', linehl = '', numhl = '' })
       nmap { '<F5>', function()
         vim.g.last_dbg_buf = vim.api.nvim_get_current_buf()
-        require 'sidebar-nvim'.close()
         require 'dapui'.open()
         require 'dap'.continue()
       end }
