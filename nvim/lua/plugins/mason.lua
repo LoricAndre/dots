@@ -83,7 +83,6 @@ local config = {
         vim.api.nvim_set_current_buf(vim.g.last_dbg_buf)
         require 'dapui'.close()
         require 'dap'.terminate()
-        require 'sidebar-nvim'.open()
       end }
       nmap { '<F6>', require 'dap'.toggle_breakpoint }
       nmap { '<F7>', require 'dap'.step_over }
@@ -133,4 +132,8 @@ require 'mason-lspconfig'.setup {
 }
 config.lsp.setup()
 config.dap.setup()
+require 'mason-nvim-dap'.setup {
+    automatic_setup = true,
+}
+require 'mason-nvim-dap'.setup_handlers()
 null_ls.setup(config['null-ls'])

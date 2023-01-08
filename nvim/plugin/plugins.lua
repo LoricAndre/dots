@@ -58,7 +58,8 @@ local plugins_spec = {
             'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
             'williamboman/mason-lspconfig.nvim',
             'jose-elias-alvarez/null-ls.nvim', 'ThePrimeagen/refactoring.nvim',
-            'rcarriga/nvim-dap-ui', 'mfussenegger/nvim-dap'
+            'rcarriga/nvim-dap-ui', 'mfussenegger/nvim-dap',
+            "jayp0521/mason-nvim-dap.nvim",
         }
     }, {'lewis6991/impatient.nvim'}, {'ggandor/lightspeed.nvim'},
     {'shaunsingh/nord.nvim'}, {'tiagovla/tokyodark.nvim'},
