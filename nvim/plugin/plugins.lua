@@ -56,10 +56,10 @@ local plugins_spec = {
             'neovim/nvim-lspconfig', 'jubnzv/virtual-types.nvim',
             'kosayoda/nvim-lightbulb',
             'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
+            'ThePrimeagen/refactoring.nvim',
             'williamboman/mason-lspconfig.nvim',
-            'jose-elias-alvarez/null-ls.nvim', 'ThePrimeagen/refactoring.nvim',
-            'rcarriga/nvim-dap-ui', 'mfussenegger/nvim-dap',
-            "jayp0521/mason-nvim-dap.nvim",
+            'jose-elias-alvarez/null-ls.nvim', 'jayp0521/mason-null-ls.nvim',
+            'rcarriga/nvim-dap-ui', 'mfussenegger/nvim-dap', "jayp0521/mason-nvim-dap.nvim",
         }
     }, {'lewis6991/impatient.nvim'}, {'ggandor/lightspeed.nvim'},
     {'shaunsingh/nord.nvim'}, {'tiagovla/tokyodark.nvim'},

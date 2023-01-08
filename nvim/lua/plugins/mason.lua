@@ -1,26 +1,51 @@
-local dap = require 'dap'
-local dapui = require 'dapui'
 local coq = require 'coq'
-local null_ls = require 'null-ls'
 
 local nmap = require 'utils'.nmap
 local vmap = require 'utils'.vmap
 
-local mason_path = vim.fn.stdpath('data') .. '/mason/'
+
+local ensure_installed = {
+  lsp = {
+    'sumneko_lua',
+    'bashls',
+    'pyright',
+    'clangd',
+    'rust_analyzer',
+    'gopls',
+    'tsserver',
+  },
+  dap = {
+    'python',
+    'cppdbg',
+    'codelldb',
+    'bash',
+    'javadbg',
+    'node2'
+  },
+  null_ls = {
+    'cpplint',
+    'clang_format',
+    'hadolint',
+    'gitlint',
+    'prettierd',
+    'prettier',
+    'eslint_d',
+    'jq',
+    'luacheck',
+    'markdownlint',
+    'autopep8',
+    'pylint',
+    'shellcheck',
+    'shellharden',
+    'yamlfmt'
+  }
+}
+
+
 
 local config = {
   lsp = {
-    servers = {
-      'sumneko_lua',
-      'bashls',
-      'pyright',
-      'clangd',
-      'rust_analyzer',
-      'gopls',
-      'tsserver',
-    },
-    setup = function()
-      local on_attach = function()
+      on_attach = function()
         require 'virtualtypes'.on_attach()
         nmap { 'K', vim.lsp.buf.hover }
         nmap { '<leader>ld', vim.lsp.buf.definition }
@@ -35,42 +60,10 @@ local config = {
         vmap { '<leader>la', vim.lsp.buf.code_action }
         nmap { '<leader>lf', function() vim.lsp.buf.format { async = true } end }
         vmap { '<leader>lf', function() vim.lsp.buf.format { async = true } end }
-      end
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      require'mason-lspconfig'.setup_handlers {
-        function(server)
-          require 'lspconfig'[server].setup(coq.lsp_ensure_capabilities {
-          on_attach = on_attach,
-          capabilities = capabilities
-        })
-        end
-      }
-    end
+      end,
+      capabilities = vim.lsp.protocol.make_client_capabilities()
   },
   dap = {
-    adapters = {
-      cppdbg = {
-        id = 'cppdbg',
-        type = 'executable',
-        command = mason_path .. 'bin/OpenDebugAD7'
-      }
-    },
-    configurations = {
-      cpp = {
-        name = 'Launch file',
-        type = 'cppdbg',
-        request = 'launch',
-        program = function()
-          if vim.fn.filereadable(vim.fn.expand('%:r') .. '.g') then
-            return vim.fn.expand('%:r') .. '.g'
-          else
-            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-          end
-        end,
-        cwd = '${workspaceFolder}',
-        stopAtEntry = true,
-      }
-    },
     setup = function()
       vim.fn.sign_define('DapBreakpoint', { text = '🛑', texthl = '', linehl = '', numhl = '' })
       nmap { '<F5>', function()
@@ -88,61 +81,42 @@ local config = {
       nmap { '<F7>', require 'dap'.step_over }
       nmap { '<F8>', require 'dap'.step_into }
 
-      return dapui.setup()
+      require 'dapui'.setup()
     end
-  },
-  ['null-ls'] = {
-    sources = {
-      null_ls.builtins.code_actions.eslint_d,
-      null_ls.builtins.code_actions.gitsigns,
-      null_ls.builtins.code_actions.ltrs,
-      null_ls.builtins.code_actions.refactoring,
-      null_ls.builtins.diagnostics.checkmake,
-      null_ls.builtins.diagnostics.chktex,
-      null_ls.builtins.diagnostics.commitlint,
-      null_ls.builtins.diagnostics.cppcheck,
-      null_ls.builtins.diagnostics.cpplint,
-      null_ls.builtins.diagnostics.jsonlint,
-      null_ls.builtins.diagnostics.luacheck,
-      null_ls.builtins.diagnostics.markdownlint,
-      null_ls.builtins.diagnostics.mypy,
-      null_ls.builtins.diagnostics.vulture,
-      null_ls.builtins.diagnostics.zsh,
-      null_ls.builtins.diagnostics.yamllint,
-      null_ls.builtins.formatting.autopep8,
-      null_ls.builtins.formatting.clang_format,
-      null_ls.builtins.formatting.jq,
-      null_ls.builtins.formatting.latexindent,
-      null_ls.builtins.formatting.lua_format,
-      null_ls.builtins.formatting.prettierd,
-      null_ls.builtins.formatting.rustfmt,
-      null_ls.builtins.formatting.shfmt,
-      null_ls.builtins.formatting.yamlfmt,
-    },
-  },
-  mason = {
-    install_root_dir = mason_path,
-  },
-  ['mason-nvim-dap'] = {
-    ensure_installed = {
-      'python',
-      'cppdbg',
-      'codelldb',
-      'bash',
-      'javadbg',
-      'node2'
-    },
-    automatic_setup = true
   }
 }
 
-require 'mason'.setup(config.mason)
+require 'mason'.setup {
+  install_root_dir = vim.fn.stdpath('data') .. '/mason/'
+}
+
+-- LSP
 require 'mason-lspconfig'.setup {
-  ensure_installed = config.lsp.servers,
+  ensure_installed = ensure_installed.lsp,
   automatic_installation = true
 }
-config.lsp.setup()
+require'mason-lspconfig'.setup_handlers {
+  function(server)
+    require 'lspconfig'[server].setup(coq.lsp_ensure_capabilities {
+    on_attach = config.lsp.on_attach,
+    capabilities = config.lsp.capabilities
+  })
+  end
+}
+
+-- DAP
 config.dap.setup()
-require 'mason-nvim-dap'.setup(config['mason-nvim-dap'])
+require 'mason-nvim-dap'.setup {
+  ensure_installed = ensure_installed.dap,
+  automatic_setup = true,
+  automatic_installation = true
+}
 require 'mason-nvim-dap'.setup_handlers()
-null_ls.setup(config['null-ls'])
+
+-- NULL LS
+require 'mason-null-ls'.setup {
+  ensure_installed = ensure_installed.null_ls,
+  automatic_setup = true,
+  automatic_installation = true
+}
+require 'mason-null-ls'.setup_handlers()
