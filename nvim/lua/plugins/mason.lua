@@ -122,6 +122,17 @@ local config = {
   },
   mason = {
     install_root_dir = mason_path,
+  },
+  ['mason-nvim-dap'] = {
+    ensure_installed = {
+      'python',
+      'cppdbg',
+      'codelldb',
+      'bash',
+      'javadbg',
+      'node2'
+    },
+    automatic_setup = true
   }
 }
 
@@ -132,8 +143,6 @@ require 'mason-lspconfig'.setup {
 }
 config.lsp.setup()
 config.dap.setup()
-require 'mason-nvim-dap'.setup {
-    automatic_setup = true,
-}
+require 'mason-nvim-dap'.setup(config['mason-nvim-dap'])
 require 'mason-nvim-dap'.setup_handlers()
 null_ls.setup(config['null-ls'])
