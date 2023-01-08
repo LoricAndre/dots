@@ -1,3 +1,4 @@
+local vim = vim
 local coq = require 'coq'
 
 local nmap = require 'utils'.nmap
