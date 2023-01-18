@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-cat > plugin/colors.lua << EOF
+cat > lua/plugins/nvim-base16.lua << EOF
 -- vim.api.nvim_cmd({cmd = 'colorscheme', args = {vim.g.colorscheme}}, {})
 require 'base16-colorscheme'.setup {
   base00 = "#${color_bg}",

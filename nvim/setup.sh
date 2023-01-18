@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
 . ../vars.sh
-./plugin/colors.lua.tpl
+./lua/plugins/nvim-base16.lua.tpl
 
 ln -sf "$(pwd)" "$HOME/.config/"
