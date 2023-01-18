@@ -19,7 +19,6 @@ local plugins_spec = {
             'nvim-telescope/telescope-ui-select.nvim'
         },
         config = function() require 'plugins.telescope' end,
-        rocks = {'openssl', 'lua-http-parser'}
     }, {
         'akinsho/toggleterm.nvim',
         config = function() require 'plugins.toggleterm' end
