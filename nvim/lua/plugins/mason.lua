@@ -46,23 +46,23 @@ local ensure_installed = {
 
 local config = {
   lsp = {
-      on_attach = function()
-        require 'virtualtypes'.on_attach()
-        nmap { 'K', vim.lsp.buf.hover }
-        nmap { '<leader>ld', vim.lsp.buf.definition }
-        nmap { '<leader>lD', vim.lsp.buf.declaration }
-        nmap { '<leader>li', vim.lsp.buf.implementation }
-        nmap { '<leader>lt', vim.lsp.buf.type_definition }
-        nmap { '<leader>lr', vim.lsp.buf.references }
-        nmap { '<leader>lR', vim.lsp.buf.rename }
-        nmap { '<leader>ls', vim.lsp.buf.document_symbol }
-        nmap { '<leader>lS', vim.lsp.buf.workspace_symbol }
-        nmap { '<leader>la', vim.lsp.buf.code_action }
-        vmap { '<leader>la', vim.lsp.buf.code_action }
-        nmap { '<leader>lf', function() vim.lsp.buf.format { async = true } end }
-        vmap { '<leader>lf', function() vim.lsp.buf.format { async = true } end }
-      end,
-      capabilities = vim.lsp.protocol.make_client_capabilities()
+    on_attach = function()
+      require 'virtualtypes'.on_attach()
+      nmap { 'K', vim.lsp.buf.hover }
+      nmap { '<leader>ld', vim.lsp.buf.definition }
+      nmap { '<leader>lD', vim.lsp.buf.declaration }
+      nmap { '<leader>li', vim.lsp.buf.implementation }
+      nmap { '<leader>lt', vim.lsp.buf.type_definition }
+      nmap { '<leader>lr', vim.lsp.buf.references }
+      nmap { '<leader>lR', vim.lsp.buf.rename }
+      nmap { '<leader>ls', vim.lsp.buf.document_symbol }
+      nmap { '<leader>lS', vim.lsp.buf.workspace_symbol }
+      nmap { '<leader>la', vim.lsp.buf.code_action }
+      vmap { '<leader>la', vim.lsp.buf.code_action }
+      nmap { '<leader>lf', function() vim.lsp.buf.format { async = true } end }
+      vmap { '<leader>lf', function() vim.lsp.buf.format { async = true } end }
+    end,
+    capabilities = vim.lsp.protocol.make_client_capabilities()
   },
   dap = {
     setup = function()
@@ -96,12 +96,12 @@ require 'mason-lspconfig'.setup {
   ensure_installed = ensure_installed.lsp,
   automatic_installation = true
 }
-require'mason-lspconfig'.setup_handlers {
+require 'mason-lspconfig'.setup_handlers {
   function(server)
     require 'lspconfig'[server].setup(coq.lsp_ensure_capabilities {
-    on_attach = config.lsp.on_attach,
-    capabilities = config.lsp.capabilities
-  })
+      on_attach = config.lsp.on_attach,
+      capabilities = config.lsp.capabilities
+    })
   end
 }
 
@@ -120,4 +120,5 @@ require 'mason-null-ls'.setup {
   automatic_setup = true,
   automatic_installation = true
 }
+require 'null-ls'.setup()
 require 'mason-null-ls'.setup_handlers()

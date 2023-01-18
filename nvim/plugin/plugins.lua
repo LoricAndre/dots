@@ -32,7 +32,7 @@ local plugins_spec = {
             {'ms-jpq/coq.thirdparty', branch = '3p'}
         },
         run = ':COQdeps',
-        config = function() require 'plugins.coq' end
+        config = function() require 'plugins.coq' end,
     }, {
         'feline-nvim/feline.nvim',
         config = function() require 'plugins.feline' end,
@@ -59,7 +59,8 @@ local plugins_spec = {
             'williamboman/mason-lspconfig.nvim',
             'jose-elias-alvarez/null-ls.nvim', 'jayp0521/mason-null-ls.nvim',
             'rcarriga/nvim-dap-ui', 'mfussenegger/nvim-dap', "jayp0521/mason-nvim-dap.nvim",
-        }
+        },
+        after = 'coq_nvim' -- required for auto start to work
     }, {'lewis6991/impatient.nvim'}, {'ggandor/lightspeed.nvim'},
     {'shaunsingh/nord.nvim'}, {'tiagovla/tokyodark.nvim'},
     {'folke/tokyonight.nvim'}, {'ygm2/rooter.nvim'},
