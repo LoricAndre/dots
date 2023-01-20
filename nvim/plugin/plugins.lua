@@ -21,7 +21,8 @@ local plugins_spec = {
     requires = { 'kyazdani42/nvim-web-devicons', 'lewis6991/gitsigns.nvim' }
   },
   ['nvim-treesitter/nvim-treesitter'] = {
-    run = ':TSUpdate'
+    run = ':TSUpdate',
+    event = 'BufRead'
   },
   ['michaelb/sniprun'] = {
     run = 'bash ./install.sh'
@@ -38,7 +39,7 @@ local plugins_spec = {
     },
     after = 'coq_nvim' -- required for auto start to work
   },
-  { 'catppuccin/nvim', as = 'catppuccin' }, 'RRethy/nvim-base16',
+  'catppuccin/nvim', 'RRethy/nvim-base16',
   'lewis6991/impatient.nvim', 'ggandor/lightspeed.nvim',
   'shaunsingh/nord.nvim', 'tiagovla/tokyodark.nvim',
   'folke/tokyonight.nvim', 'ygm2/rooter.nvim',

@@ -44,7 +44,12 @@ M.vmap = function(a)
 end
 
 local get_package_name = function(s)
-  local lhs = s:gsub("^.*/(.+)$", "%1")
+  local rhs = s:gsub("^(.+)/.+$", "%1")
+  local lhs = s:gsub("^.+/(.+)$", "%1")
+  if lhs == "nvim" then -- package name from uri 'xxx/nvim'
+    return rhs
+  end
+  -- package name from uri 'xxx/yyy.nvim' or 'xxx/yyy'
   return lhs:gsub("^(.+)%.nvim$", "%1")
 end
 
@@ -56,6 +61,10 @@ M.pack = function(a)
       'git', 'clone', '--depth', '1',
       'https://github.com/wbthomason/packer.nvim', install_path
     })
+  end
+
+  if not pcall(require, 'packer') then
+    return
   end
 
   return require 'packer'.startup(function(use)
