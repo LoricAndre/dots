@@ -106,3 +106,4 @@ xdg-open() {
 vnmap() {
   nmap -Pn -sV --script vuln $@ | grep -C1 VULNERABLE | grep IDs | sed -n 's/^.*IDs:.*:\(.*\)$/\1/p'
 }
+alias pipr=pip install -r
