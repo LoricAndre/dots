@@ -7,13 +7,13 @@ function rec {
     if [[ ! $name == null ]]; then
       case $name in
         \"Firefox\")
-          printf " "
+          printf "󰈹 "
           ;;
         \"kitty\")
           printf " "
           ;;
         *)
-          printf " "
+          printf "󰌽 "
           ;;
       esac
     fi
@@ -29,7 +29,7 @@ function rec {
 function icon {
   case $1 in
     \"firefox\")
-      printf " "
+      printf "󰈹 "
       ;;
     \"kitty\"|\"xst-256color\")
       printf " "
@@ -41,7 +41,7 @@ function icon {
       printf " "
       ;;
     \"discord\")
-      printf "ﭮ "
+      printf "󰙯 "
       ;;
     \"zoom\")
       printf " "
@@ -59,7 +59,7 @@ function icon {
       ;;
     *)
       printf ""
-      # printf " "
+      # printf "󰌽 "
       ;;
   esac
 }

@@ -19,9 +19,9 @@ lock_x11() {
 
 lock_wl() {
   waylock \\
-    --init-color "#${color_bg}" \\
-    --fail-color "#${color_2}" \\
-    --input-color "#${color_9}"
+    -init-color "0x${color_bg}" \\
+    -fail-color "0x${color_2}" \\
+    -input-color "0x${color_9}"
 }
 
 if [[ \${XDG_SESSION_TYPE} == wayland ]]; then

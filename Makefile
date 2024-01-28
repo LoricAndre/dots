@@ -1,4 +1,4 @@
-modules := (fontconfig kitty nvim zsh hyprlan hyprland)
+modules := (fontconfig kitty nvim zsh hypr git)
 links := $(patsubst %, link-%, $(modules))
 
 setup: pull paru upgrade install $(links)
@@ -19,3 +19,4 @@ upgrade:
 
 link-%: %
 	cd "$<" && ([ -f setup.sh ] && chmod +x setup.sh && ./setup.sh || ln -sf $(PWD)/$< ~/.config/$<)
+
