@@ -122,6 +122,9 @@ fi
 #   fi
 # }
 #
+export DISABLE_AUTO_TITLE="true"
+function precmd () {print -Pn "\e]0; - zsh\a"}
+
 _battery() {
   dir="/sys/class/power_supply/BAT0"
   if [ -d "$dir" ]; then

@@ -1,4 +1,4 @@
-modules := (fontconfig kitty nvim zsh hypr git)
+modules := (fontconfig kitty nvim zsh hypr git waybar)
 links := $(patsubst %, link-%, $(modules))
 
 setup: pull paru upgrade install $(links)
